@@ -5,7 +5,7 @@ plugins {
 }
 sonar {
     properties {
-        property "sonar.projectKey", "my-java-app"
+        property "sonar.projectKey", "gradle-demo"
         property "sonar.host.url", "http://localhost:9000"
     }
 }
