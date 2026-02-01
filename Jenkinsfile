@@ -22,13 +22,14 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-         steps {
-         script {
+    steps {
+        script {
             withSonarQubeEnv('SonarQube') {
-                sh "./mvnw sonar:sonar \
+                
+                sh "./gradlew sonar \
                     -Dsonar.projectKey=my-java-app \
-                    -Dsonar.java.binaries=target/classes \
-                    -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
+                    -Dsonar.projectName='My Java App' \
+                    -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml"
             }
         }
     }
