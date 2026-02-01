@@ -22,18 +22,18 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv('SonarQube') {
-                        withCredentials([(credentials: 'sonar-token', variable: 'SONAR-TOKEN')]){
-                        sh '''
-                        ./gradlew sonar \
-                         -Dsonar.login=$SONAR_TOKEN
-                         '''
-                    }
-                }
+         steps {
+         script {
+            withSonarQubeEnv('SonarQube') {
+                sh "./mvnw sonar:sonar \
+                    -Dsonar.projectKey=my-java-app \
+                    -Dsonar.java.binaries=target/classes \
+                    -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
             }
         }
     }
- }
 }
+        
+    }
+ }
+
